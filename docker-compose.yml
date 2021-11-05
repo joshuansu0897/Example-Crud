@@ -1,0 +1,33 @@
+# Use root/example as user/password credentials
+version: '3'
+
+services:
+  app:
+    build: .
+    tty: true
+    ports:
+      - 3000:3000
+    volumes: 
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on: 
+      - adminer
+      - db
+    environment: 
+      - HOST_DB=db
+    command: npm run dev
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: ExampleDB
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on: 
+      - db
