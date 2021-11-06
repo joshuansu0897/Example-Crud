@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   let post = {
     title: req.body.title,
     published: req.body.published,
-    authorId: req.body.authorId,
+    authorId: Number(req.body.authorId),
     content: req.body.content
   }
 
@@ -35,7 +35,7 @@ router.put('/:id', async (req, res) => {
     id,
     title: req.body.title,
     published: req.body.published,
-    authorId: req.body.authorId,
+    authorId: Number(req.body.authorId),
     content: req.body.content
   }
 
