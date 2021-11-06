@@ -1,17 +1,19 @@
 'use strict'
-const app = require('express')()
+const express = require('express')
+const app = express()
 const bodyParser = require('body-parser')
 const { handleFatalError } = require('./src/utils/utils')
+
+const path = require('path')
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 process.on('uncaughtException', handleFatalError)
 process.on('unhandledRejection', handleFatalError)
 
 app.use(bodyParser.json())
 
-const users = require('./src/components/users')
-const posts = require('./src/components/posts')
+const restV1 = require('./src/components/v1')
 
-app.use(`/users`, users.controller)
-app.use(`/posts`, posts.controller)
+app.use(`/api/v1`, restV1)
 
 module.exports = app
