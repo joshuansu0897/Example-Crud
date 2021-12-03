@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npx prisma migrate dev",
     "start": "node ./bin/www",
     "dev": "nodemon -L ./bin/www",
+    "predev": "npx prisma migrate dev",
     "prod": "pm2 ./bin/www"
   },
   "author": "",
