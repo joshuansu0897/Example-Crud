@@ -1,6 +1,8 @@
 'use strict'
 const router = require('express').Router()
 const User = require('./dal')
+const utils = require('../../utils/utils')
+const encryption = require('../../utils/encryption')
 
 router.get('/', async (req, res) => {
   let response = await User.getAll()
@@ -11,7 +13,14 @@ router.post('/', async (req, res) => {
 
   let user = {
     email: req.body.email,
-    name: req.body.name
+    username: req.body.username,
+    password: encryption.encrypt(req.body.password)
+  }
+
+  if (utils.isEmptyObj(user)) {
+    res.status(400)
+    res.json({ msg: 'Missign arguments on body' })
+    return
   }
 
   let response = await User.save(user)
@@ -32,7 +41,8 @@ router.put('/:id', async (req, res) => {
   let user = {
     id,
     email: req.body.email,
-    name: req.body.name
+    username: req.body.username,
+    password: encryption.hash(req.body.password)
   }
 
   let response = await User.save(user)

@@ -35,7 +35,6 @@ router.put('/:id', async (req, res) => {
     id,
     title: req.body.title,
     published: req.body.published,
-    authorId: Number(req.body.authorId),
     content: req.body.content
   }
 

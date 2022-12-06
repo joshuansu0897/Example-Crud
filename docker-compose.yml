@@ -2,20 +2,20 @@
 version: '3'
 
 services:
-  app:
-    build: .
-    tty: true
-    ports:
-      - 3000:3000
-    volumes: 
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
-    depends_on: 
-      adminer:
-        condition: service_started
-      db: 
-        condition: service_healthy
-    command: sh -c "chmod -R 777 /usr/src/app/node_modules/.prisma/ /usr/src/app/node_modules/prisma/ && npm run db:migrate-dev && npm run db:generate && npm run dev"
+  # app:
+  #   build: .
+  #   tty: true
+  #   ports:
+  #     - 3000:3000
+  #   volumes: 
+  #     - ./:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   depends_on: 
+  #     adminer:
+  #       condition: service_started
+  #     db: 
+  #       condition: service_healthy
+  #   command: sh -c "chmod -R 777 /usr/src/app/node_modules/.prisma/ /usr/src/app/node_modules/prisma/ && npm run db:migrate-dev && npm run db:generate && npm run dev"
 
   db:
     image: postgres

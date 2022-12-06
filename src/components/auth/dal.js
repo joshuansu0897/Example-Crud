@@ -26,6 +26,26 @@ exports.findById = async (id) => {
 }
 
 /**
+ * Sirve para buscar users basandonos en los atributos que pasas
+ * @param {Object} opts - Es el objeto con los atributos a buscar
+ * @returns Regresa el user encontrado, sino no lo encuentra regresa `null`
+ */
+exports.findBy = async (opts) => {
+  let payload = undefined
+
+  try {
+    payload = await prisma.user.findFirst({
+      where: opts
+    })
+  } catch (error) {
+    handleError(error)
+    payload = { msg: error.message }
+  }
+
+  return payload
+}
+
+/**
  * Regresa todos los Users
  * @returns Regresa todos los Users
  */
