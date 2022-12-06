@@ -19,10 +19,10 @@ module.exports = (req, res, next) => {
 
   try {
     req.user = lib.jwt.verify(token, lib.secret)
-    next()
   } catch (error) {
-    console.log(error)
     res.status(401)
     res.json({ msg: 'Failed to authenticate token!' })
   }
+
+  next()
 }

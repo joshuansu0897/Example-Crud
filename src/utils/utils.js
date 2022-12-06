@@ -2,7 +2,7 @@
 
 exports.isEmptyObj = (obj) => {
   for (var key in obj) {
-    if (obj[key] === "" || obj[key] === 0 || obj[key] === undefined || obj[key] === null || obj[key].length === 0) {
+    if (obj[key] === undefined || obj[key] === null || obj[key] === "" || obj[key] === 0 || obj[key].length === 0) {
       return true
     }
   }
@@ -12,35 +12,12 @@ exports.isEmptyObj = (obj) => {
 
 exports.CleaningEmptyObj = (obj) => {
   for (var key in obj) {
-    if (obj[key] === "") {
+    if (obj[key] === undefined || obj[key] === null || obj[key] === "") {
       delete data[key]
     }
   }
 
   return obj
-}
-
-exports.getUpdateFields = (arr) => {
-  let update = []
-
-  if (arr === undefined || arr === null || arr.length === 0) {
-    return undefined
-  }
-
-  for (const n of arr) {
-    let { id, ...data } = n
-
-    const obj = {
-      where: {
-        id,
-      },
-      data
-    }
-
-    update.push(obj)
-  }
-
-  return update
 }
 
 exports.parseDate = (str) => {
