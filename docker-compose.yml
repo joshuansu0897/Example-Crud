@@ -11,11 +11,11 @@ services:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
     depends_on: 
-      - adminer
-      - db
-    environment: 
-      - HOST_DB=db
-    command: npm run dev
+      adminer:
+        condition: service_started
+      db: 
+        condition: service_healthy
+    command: sh -c "chmod -R 777 /usr/src/app/node_modules/.prisma/ /usr/src/app/node_modules/prisma/ && npm run db:migrate-dev && npm run db:generate && npm run dev"
 
   db:
     image: postgres
@@ -26,10 +26,16 @@ services:
       - ./DB/postgresql:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   adminer:
     image: adminer
     ports:
       - 8080:8080
     depends_on: 
-      - db
+      db:
+        condition: service_started
