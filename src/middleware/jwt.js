@@ -22,6 +22,7 @@ module.exports = (req, res, next) => {
   } catch (error) {
     res.status(401)
     res.json({ msg: 'Failed to authenticate token!' })
+    return
   }
 
   next()
