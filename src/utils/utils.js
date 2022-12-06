@@ -13,7 +13,7 @@ exports.isEmptyObj = (obj) => {
 exports.CleaningEmptyObj = (obj) => {
   for (var key in obj) {
     if (obj[key] === undefined || obj[key] === null || obj[key] === "") {
-      delete data[key]
+      delete obj[key]
     }
   }
 

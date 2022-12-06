@@ -5,7 +5,7 @@ const encryption = require('../../utils/encryption')
 const utils = require('../../utils/utils')
 const { jwt, secret } = require('../../middleware/lib')
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
 
   let user = {
     email: req.body.email,
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   res.json(response)
 })
 
-router.post('/login', async (req, res) => {
+router.post('/signin', async (req, res) => {
   let opts = {
     username: req.body.username,
     email: req.body.email
@@ -45,9 +45,6 @@ router.post('/login', async (req, res) => {
     res.json({ error: 'Invalid password' })
     return
   }
-
-  console.log(secret);
-  console.log(user);
 
   const token = jwt.sign({ id: user.id }, secret, { expiresIn: '24h' })
 
