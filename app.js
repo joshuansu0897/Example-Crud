@@ -15,7 +15,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 // Middlewares
 app.use(express.json())
-app.use(require('./src/middleware/jwt'))
+// app.use(require('./src/middleware/jwt'))
 
 // Routes v1
 const restV1 = require('./src/components/v1')

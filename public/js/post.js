@@ -32,7 +32,6 @@ async function updatePostTable() {
 
 function getPostContent() {
 
-  console.log(document.getElementById('published').checked)
   let post = {
     title: document.getElementById('title').value,
     content: document.getElementById('content').value,

@@ -22,8 +22,9 @@ async function updateUserTable() {
     userTable.innerHTML += `
                             <tr>
                                 <th scope="row">${user.id}</th>
+                                <td>${user.username}</td>
                                 <td>${user.email}</td>
-                                <td>${user.name}</td>
+                                <td>${user.password}</td>
                             </tr>
                             `
   }
@@ -32,7 +33,8 @@ async function updateUserTable() {
 function getUserContent() {
   let user = {
     email: document.getElementById('email').value,
-    name: document.getElementById('name').value
+    username: document.getElementById('username').value,
+    password: document.getElementById('password').value
   }
 
   return user
@@ -40,7 +42,8 @@ function getUserContent() {
 
 function clearUserContent() {
   document.getElementById('email').value = ''
-  document.getElementById('name').value = ''
+  document.getElementById('username').value = ''
+  document.getElementById('password').value = ''
 }
 
 const userButton = document.getElementById('create-user')
