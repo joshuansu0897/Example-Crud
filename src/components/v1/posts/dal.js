@@ -1,6 +1,6 @@
 'use strict'
-const prisma = require('../../services/prisma')
-const { handleError } = require('../../utils/handlerError')
+const prisma = require('../../../services/prisma')
+const { handleError } = require('../../../utils/handlerError')
 
 /**
  * Sirve para buscar Posts basandonos en el ID

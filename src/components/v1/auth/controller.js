@@ -1,9 +1,9 @@
 'use strict'
 const router = require('express').Router()
 const User = require('./dal')
-const encryption = require('../../utils/encryption')
-const utils = require('../../utils/utils')
-const { jwt, secret } = require('../../middleware/jwt/lib')
+const encryption = require('../../../utils/encryption')
+const utils = require('../../../utils/utils')
+const { jwt, secret } = require('../../../middleware/jwt/lib')
 
 router.post('/signup', async (req, res) => {
 

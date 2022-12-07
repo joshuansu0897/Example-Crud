@@ -1,6 +1,6 @@
 'use strict'
-const prisma = require('../../services/prisma')
-const { handleError } = require('../../utils/handlerError')
+const prisma = require('../../../services/prisma')
+const { handleError } = require('../../../utils/utils')
 
 /**
  * Sirve para buscar usuarios basandonos en el ID

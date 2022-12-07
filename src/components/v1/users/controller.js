@@ -1,8 +1,8 @@
 'use strict'
 const router = require('express').Router()
 const User = require('./dal')
-const utils = require('../../utils/utils')
-const encryption = require('../../utils/encryption')
+const utils = require('../../../utils/utils')
+const encryption = require('../../../utils/encryption')
 
 router.get('/', async (req, res) => {
   let response = await User.getAll()
